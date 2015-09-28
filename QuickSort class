@@ -1,0 +1,45 @@
+import java.util.Random;
+
+public class QuickSort {
+	public static void main(String[] args)
+	{
+		int N = 10;
+		int A[] = new int[N];
+		Random r = new Random();
+		System.out.println("Befoe sorting:");
+		for(int i = 0; i < A.length; i++)
+		{
+			A[i] = r.nextInt(10) + 1 ;
+			System.out.print(A[i] + " ");
+		}
+		System.out.println("");
+		qSort(A, 0, A.length - 1);
+		System.out.println("After soting:");
+		for(int i = 0; i < A.length; i++)
+		{
+			System.out.print(A[i] + " ");
+		}
+	}
+	
+	public static void qSort(int[] A, int low, int hight)
+	{
+		int i = low;
+		int j = hight;
+		int x = A[(low + hight)/2];
+		do
+		{
+			while (A[i] < x) ++i;
+			while (A[j] > x) --j;
+			if (i<=j)
+			{
+				int temp = A[i];
+				A[i] = A[j];
+				A[j] = temp;
+				i++; j--;
+			}
+		}while (i<=j);
+	
+		if(low < j) qSort(A,low,j);
+		if(i<hight) qSort(A,i,hight);
+	}
+}
